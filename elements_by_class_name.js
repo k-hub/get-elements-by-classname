@@ -7,27 +7,22 @@ function getElementsByClassName(element, className) {
   if (element) {
     queue.push(element);
 
-    // This will only occur once upon initialization of queue.
-    if (element.className.toString().indexOf(className) !== -1) {
-      elementsWithClassNameOfInterest.push(element);
-    }
-
     while (queue.length) {
       let currentElement = queue[0];
-
       for (let index = 0; index < currentElement.children.length; index++) {
         let childElement = currentElement.children[index];
-
-        if (childElement.className.toString().indexOf(className) !== -1) {
-          elementsWithClassNameOfInterest.push(childElement);
-        }
-
         queue.push(childElement);
+      }
+
+      let elementToDequeue = queue[0];
+      if (elementToDequeue.className.toString().indexOf(className) !== -1) {
+        elementsWithClassNameOfInterest.push(elementToDequeue);
       }
 
       queue = queue.slice(1);
     }
   }
+
   return elementsWithClassNameOfInterest;
 }
 
