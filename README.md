@@ -6,16 +6,17 @@ I decided to use BFS approach because I noticed that the element object has a ch
 (line 12: let childElement = currentElement.children[index];) 
 BFS traverses the tree by levels.
 
-Example tree: 
-            html
-            /  \
-        head    body
-      / | \     / | \    
-meta link link div div div
-                |
-               div
+Example tree:
+
+root: html
+
+two children: head, body
+
+head has three children: meta, link, link 
+
+body has three childre: div, div, div
                
-Order of traversal: html, head, body, meta, link, link, div, div, div, div
+Order of traversal: html, head, body, meta, link, link, div, div, div
 
 I stored each node in my implentation of a queue. I initialize the queue with the first node, in this case, HTML node. Then I have a while loop with the stop condition that depends on the queue length. Once the queue is empty, we have traversed the entire tree. Using the queue, I access the first node in the queue and check for its children and append each child to the queue. 
 
